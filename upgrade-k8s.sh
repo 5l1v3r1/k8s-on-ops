@@ -9,4 +9,4 @@ pip install -r "kubespray-${KUBESPRAY_VERSION}/requirements.txt"
 
 # Run ansible
 ansible-playbook -u elastx --private-key "~/.ssh/k8s.key" -i k8s-inventory.yml prepare-nodes.yml
-ansible-playbook -u elastx --private-key "~/.ssh/k8s.key" -i k8s-inventory.yml --extra-vars "{ 'helm_enabled': true, 'kubelet_custom_flags': [ '--authentication-token-webhook=true' ] }" -b kubespray-${KUBESPRAY_VERSION}/cluster.yml
+ansible-playbook -u elastx --private-key "~/.ssh/k8s.key" -i k8s-inventory.yml --extra-vars "{ 'helm_enabled': true, 'kubelet_custom_flags': [ '--authentication-token-webhook=true' ] }" -b kubespray-${KUBESPRAY_VERSION}/upgrade-cluster.yml
