@@ -1,0 +1,5 @@
+terraform/.terraform/*
+kubespray*/*
+*.retry
+k8s-inventory.yml
+openrc.sh

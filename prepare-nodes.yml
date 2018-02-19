@@ -1,0 +1,24 @@
+---
+- hosts:
+    - k8s-cluster
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Add sysctl config
+      sysctl:
+        name: "{{ item.name }}"
+        value: "{{ item.value }}"
+        sysctl_file: /etc/sysctl.conf
+        state: present
+        reload: yes
+      with_items:
+        - { name: 'net.ipv4.ip_forward', value: '1' }
+
+    - name: apt pin docker-engine
+      blockinfile:
+        path: /etc/apt/preferences.d/docker-engine
+        create: yes
+        block: |
+          Package: docker-engine
+          Pin: version 17.03.1*
+          Pin-Priority: 1000
