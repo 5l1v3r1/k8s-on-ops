@@ -14,7 +14,7 @@ resource "openstack_compute_instance_v2" "k8s-instance" {
   image_name = "ubuntu-16.04-server-latest"
   flavor_name = "m1.xlarge"
   key_pair = "${openstack_compute_keypair_v2.k8s-keypair.name}"
-  security_groups = ["${openstack_networking_secgroup_v2.k8s-ssh-provider.name}","${openstack_networking_secgroup_v2.k8s-cluster-provider.name}","${openstack_networking_secgroup_v2.k8s-cluster-consumer.name}"]
+  security_groups = ["${openstack_networking_secgroup_v2.k8s-ssh-provider.name}","${openstack_networking_secgroup_v2.k8s-web-provider.name}","${openstack_networking_secgroup_v2.k8s-cluster-provider.name}","${openstack_networking_secgroup_v2.k8s-cluster-consumer.name}"]
   user_data = "${file(var.user-data-path)}"
   network {
     uuid = "${openstack_networking_network_v2.k8s-net.id}"
